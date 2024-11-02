@@ -25,8 +25,7 @@ h3 {
     text-align: center;
 }
 
-input[type="text"],
-input[type="number"],
+input,
 button {
     width: 100%;
     padding: 10px;
@@ -57,4 +56,28 @@ input::placeholder {
     div {
         width: 90%;
     }
+}
+
+.link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for the links as buttons */
+.dashboard-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.1s;
+    text-align: center;
+}
+
+.dashboard-link:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
