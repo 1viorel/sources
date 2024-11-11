@@ -1,3 +1,8 @@
+<?php
+require_once "includes/signup_view.inc.php";
+require_once "includes/config_session.inc.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +23,9 @@
 
     <h3>Register</h3>
     <form action="includes/signup.inc.php" method="post">
-        <input type="text" name="nume" placeholder="Nume">
-        <input type="text" name="prenume" placeholder="Prenume">
-        <input type="text" name="email" placeholder="Email">
-        <input type="password" name="pwd" placeholder="Parola">
-        <input type="date" name="data_nasterii" placeholder="Data nasterii">
+        <?php
+        signup_input();
+        ?>
         <button type="submit">Register</button>
     </form>
 
@@ -31,5 +34,9 @@
         <a href="pages/produse.php" class="dashboard-link">Produse</a>
         <a href="pages/utilizatori.php" class="dashboard-link">Utilizatori</a>
     </div>
+
+    <?php 
+    check_signup_errors();
+    ?>
 </body>
 </html>

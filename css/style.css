@@ -81,3 +81,18 @@ input::placeholder {
     background-color: #0056b3;
     transform: scale(1.05);
 }
+
+
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.success {
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
