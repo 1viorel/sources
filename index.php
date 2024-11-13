@@ -1,5 +1,6 @@
 <?php
 require_once "includes/signup_view.inc.php";
+require_once "includes/login_view.inc.php";
 require_once "includes/config_session.inc.php";
 ?>
 
@@ -13,7 +14,7 @@ require_once "includes/config_session.inc.php";
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<!-- LOGIN -->
     <h3>Login</h3>
     <form action="includes/login.inc.php" method="post">
         <input type="text" name="email" placeholder="Nume utlizator">
@@ -21,6 +22,10 @@ require_once "includes/config_session.inc.php";
         <button type="submit">Login</button>
     </form>
 
+    <?php 
+    check_login_errors();
+    ?>
+<!-- SIGNUP -->
     <h3>Register</h3>
     <form action="includes/signup.inc.php" method="post">
         <?php
@@ -29,14 +34,17 @@ require_once "includes/config_session.inc.php";
         <button type="submit">Register</button>
     </form>
 
+
+    <?php 
+    check_signup_errors();
+    ?>
+<!-- CRUD -->
     <h3>Pagina principala</h3>
     <div class="link-container">
         <a href="pages/produse.php" class="dashboard-link">Produse</a>
         <a href="pages/utilizatori.php" class="dashboard-link">Utilizatori</a>
     </div>
 
-    <?php 
-    check_signup_errors();
-    ?>
+  
 </body>
 </html>
