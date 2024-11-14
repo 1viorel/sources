@@ -26,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         $_SESSION["user_id"] = $result["id"];
         $_SESSION["user_email"] = htmlspecialchars($result["email"]);
+        $_SESSION["user_nume"] = htmlspecialchars($result["nume"]);
+        $_SESSION["user_prenume"] = htmlspecialchars($result["prenume"]);
         
         header("Location: ../index.php?login=success");
         $pdo = null;
