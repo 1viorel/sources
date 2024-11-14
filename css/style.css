@@ -96,3 +96,25 @@ input::placeholder {
     margin-top: 10px;
     text-align: center;
 }
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-item {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+.product-item h3 {
+    font-size: 18px;
+}
+.product-item p {
+    font-size: 14px;
+}
+.product-item button {
+    margin-top: 10px;
+}
+

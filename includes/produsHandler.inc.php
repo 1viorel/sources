@@ -63,6 +63,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die();
         }
 
+           // BUY Product
+           if (isset($_POST["action"]) && $_POST["action"] == "buy") {
+            $nume_produs = $_POST["nume_produs"];
+
+            // Fetch current stock for the product
+            $query = "SELECT stoc FROM produse WHERE nume_produs = :nume_produs";
+            $stmt = $pdo->prepare($query);
+            $stmt->bindParam(":nume_produs", $nume_produs);
+            $stmt->execute();
+            $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($product && $product['stoc'] > 0) {
+                // Deduct one from the stock
+                $new_stock = $product['stoc'] - 1;
+                $updateQuery = "UPDATE produse SET stoc = :stoc WHERE nume_produs = :nume_produs";
+                $updateStmt = $pdo->prepare($updateQuery);
+                $updateStmt->bindParam(":stoc", $new_stock);
+                $updateStmt->bindParam(":nume_produs", $nume_produs);
+                $updateStmt->execute();
+
+                header("Location: ../index.php?purchase=success");
+                exit();
+            } else {
+                // Redirect if the product is out of stock
+                header("Location: ../index.php?purchase=out_of_stock");
+                exit();
+            }
+        }
+
     } catch (PDOException $e) {
         die("Operation failed: " . $e->getMessage());
     }

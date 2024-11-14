@@ -61,9 +61,45 @@ if (isset($_SESSION["user_id"])) { ?>
  check_signup_errors();
  ?>
 
-  
+<!-- PRODUSE -->
+<?php
+if (isset($_SESSION["user_id"]) && $_SERVER["REQUEST_METHOD"] == "GET" && !isset($_GET["nume_produs"])) {
+    require_once "includes/dbh.inc.php";
+
+    try {
+        $query = "SELECT * FROM produse";
+        $stmt = $pdo->query($query);
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo "<h2>SHOP</h2><div class='product-list'>";
+        foreach ($products as $product) {
+            echo "<div class='product-item'>";
+            echo "<h3>" . htmlspecialchars($product['nume_produs']) . "</h3>";
+            echo "<p>Description: " . htmlspecialchars($product['descriere_produs']) . "</p>";
+            echo "<p>Price: $" . htmlspecialchars($product['valoare_unitara']) . "</p>";
+            echo "<p>Stock: " . htmlspecialchars($product['stoc']) . "</p>";
+            
+            // Display Buy button if stock is available
+            if ($product['stoc'] > 0) {
+                echo "<form method='POST' action='includes/produsBuyHandler.php'>
+                        <input type='hidden' name='nume_produs' value='" . htmlspecialchars($product['nume_produs']) . "'>
+                        <input type='hidden' name='action' value='buy'>
+                        <button type='submit'>Buy</button>
+                      </form>";
+            } else {
+                echo "<p><em>Out of Stock</em></p>";
+            }
+            echo "</div>";
+        }
+        echo "</div>";
+
+    } catch (PDOException $e) {
+        die("Failed to retrieve products: " . $e->getMessage());
+    }
+}
+?>
+
 <!-- CRUD -->
- 
 <?php
 if (isset($_SESSION["user_id"])) { ?>
     <h3>(dev only: CRUD demonstration)</h3>
