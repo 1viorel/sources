@@ -63,7 +63,7 @@ if (isset($_SESSION["user_id"])) { ?>
 
 <!-- PRODUSE -->
 <?php
-if (isset($_SESSION["user_id"]) && $_SERVER["REQUEST_METHOD"] == "GET" && !isset($_GET["nume_produs"])) {
+if (isset($_SESSION["user_id"])) {
     require_once "includes/dbh.inc.php";
 
     try {
@@ -78,26 +78,37 @@ if (isset($_SESSION["user_id"]) && $_SERVER["REQUEST_METHOD"] == "GET" && !isset
             echo "<p>Description: " . htmlspecialchars($product['descriere_produs']) . "</p>";
             echo "<p>Price: $" . htmlspecialchars($product['valoare_unitara']) . "</p>";
             echo "<p>Stock: " . htmlspecialchars($product['stoc']) . "</p>";
-            
-            // Display Buy button if stock is available
+
             if ($product['stoc'] > 0) {
-                echo "<form method='POST' action='includes/produsBuyHandler.php'>
+                echo "<form method='POST' action='includes/add_to_basket.inc.php'>
+                        <input type='hidden' name='id' value='" . htmlspecialchars($product['id']) . "'>
                         <input type='hidden' name='nume_produs' value='" . htmlspecialchars($product['nume_produs']) . "'>
-                        <input type='hidden' name='action' value='buy'>
-                        <button type='submit'>Buy</button>
+                        <input type='hidden' name='valoare_unitara' value='" . htmlspecialchars($product['valoare_unitara']) . "'>
+                        <label for='quantity'>Cantitatea:</label>
+                        <input type='number' name='quantity' value='1' min='1' max='" . htmlspecialchars($product['stoc']) . "'>
+                        <button type='submit'>Adauga in cos</button>
                       </form>";
             } else {
-                echo "<p><em>Out of Stock</em></p>";
+                echo "<p>Nu e in stoc</p>";
             }
             echo "</div>";
         }
         echo "</div>";
 
+        if (isset($_SESSION["basket"]) && !empty($_SESSION["basket"])) { ?>
+             <form method='GET' action='pages/confirm_basket.php'>
+                    <button type='submit'>Vezi cosul de cumparaturi</button>
+                </form>
+                <?php    
+            };
     } catch (PDOException $e) {
         die("Failed to retrieve products: " . $e->getMessage());
     }
 }
 ?>
+
+
+
 
 <!-- CRUD -->
 <?php

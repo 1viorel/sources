@@ -99,7 +99,9 @@ input::placeholder {
 
 .product-list {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    width: 90%;
 }
 .product-item {
     border: 1px solid #ccc;
@@ -117,4 +119,85 @@ input::placeholder {
 .product-item button {
     margin-top: 10px;
 }
+/* Basket styles */
+.basket {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+.basket-item {
+    width: 600px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basket-item:last-child {
+    border-bottom: none;
+}
+
+.basket-item h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.basket-item p {
+    margin: 5px 0;
+}
+
+.basket-item form {
+    margin: 0;
+}
+
+.basket-item button {
+    margin-left: 10px;
+}
+
+.basket p {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.basket button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Error message styles */
+p[style="color: red;"] {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Link container */
+p a {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.cta {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    background-color: #ff0000;
+    text-decoration: none;
+}
+.cta:hover {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    background-color: #8a0e0e;
+    text-decoration: none;
+}
