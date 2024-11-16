@@ -95,6 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form method="POST" action="confirm_basket.php">
             <button class="cta" type="submit">Confirma</button>
         </form>
+        <a href="../index.php">Inapoi la Magazin</a>
     <?php else: ?>
         <p>Cos gol. <a href="../index.php">Inapoi</a>.</p>
     <?php endif; ?>

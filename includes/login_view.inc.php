@@ -6,9 +6,9 @@ function output_username() {
     if (isset($_SESSION["user_id"])) {
         $user_nume = $_SESSION["user_nume"];
         $user_prenume = $_SESSION["user_prenume"];
-        echo "<p class='success'> Bine ai venit, $user_nume $user_prenume! </p>";
+        echo "<h2 class='success'> Bine ai venit, $user_nume $user_prenume! </h2>";
     } else {
-        echo "<p class='error'>Nu esti logat! </p>";
+        echo "<h2 class='error'>Nu esti logat! </h2>";
     }
 }
 
@@ -20,10 +20,6 @@ function check_login_errors() {
         }
         unset($_SESSION["error_login"]);
     } 
-    else if(isset($_GET["login"])&& $_GET["login"] === "success") {
-        echo "<br>";
-        echo "<p class='success'>Logare cu succes!</p>";
-    }
 }
 
 

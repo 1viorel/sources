@@ -15,21 +15,30 @@ require_once "includes/config_session.inc.php";
 </head>
 <body>
 
+
+
+<!-- LOGOUT and HISTORY -->
+<?php if (isset($_SESSION["user_id"])): ?>
+    <nav class="navbar">
+            <div>
+                <form action="includes/logout.inc.php" method="post" class="navbar-form">
+                    <button type="submit" class="orange">Logout</button>
+                </form>
+                <form method="GET" action="pages/history.php" class="navbar-form">
+                    <button type="submit">Istoric Comenzi</button>
+                </form>
+                <form method="GET" action="pages/garantie.php" class="navbar-form">
+                    <button type="submit" class="navbar-button">Produse in Garanție</button>
+                </form>
+            </div>
+    </nav>
+<?php endif; ?>
+
 <h3>
     <?php
     output_username();
     ?>
 </h3>
-
-<!-- LOGOUT -->
- <?php
-if (isset($_SESSION["user_id"])) { ?>
-<form action="includes/logout.inc.php" method="post">
-        <button type="submit">Logout</button>
-</form>
-<?php    
- };
- ?>
 
 <!-- LOGIN -->
 <?php 
